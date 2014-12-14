@@ -23,5 +23,3 @@ main = hspec $ do
 
     it "should return [11,'fizz',13,14,'fizzbuzz']" $ do
       FizzBuzz.run [11,12,13,14,15] `shouldBe` ["11","fizz","13","14","fizzbuzz"]
-
-
