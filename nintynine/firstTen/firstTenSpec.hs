@@ -48,8 +48,14 @@ main = hspec $ do
     it "#7 flattens a list" $ do
       FirstTen.myFlatten2 [[1,2,3],[4,5,6]] `shouldBe` [1,2,3,4,5,6]
 
-    it "#8 compresses list" $ do
+    it "#8a compresses list" $ do
       FirstTen.myCompress "aaaasswwertyy" `shouldBe` "aswerty"
+
+    it "#8b compresses list" $ do
+      FirstTen.myCompress "aaaasswwertyyaa" `shouldBe` "aswertya"
+
+    it "#8c compresses list" $ do
+      FirstTen.myCompress "asswwertyyaa" `shouldBe` "aswertya"
 
     it "#9 packs a list" $ do
       FirstTen.myPack "aaabbbcaacc" `shouldBe` ["aaa","bbb","c","aa","cc"]

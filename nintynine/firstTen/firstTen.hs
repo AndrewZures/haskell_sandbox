@@ -52,11 +52,14 @@ myFlatten2 :: [[a]] -> [a]
 myFlatten2 xss = foldl (\agg xs -> agg ++ xs) [] xss
 
 myCompress :: (Eq a) => [a] -> [a]
-myCompress xs = myCompress' xs []
+myCompress [] = []
+myCompress (x:xs) = x : myCompress' xs x
 
-myCompress' [] agg  = agg
-myCompress' (x:xs) agg | x `elem` agg  = myCompress' xs agg
-                       | otherwise     = myCompress' xs (agg ++ [x])
+myCompress' :: (Eq a) => [a] -> a -> [a]
+myCompress' [] _  = []
+myCompress' (x:xs) last | x == last  = next
+                        | otherwise  = x : next
+                        where next = myCompress' xs x
 
 myPack :: (Eq a) => [a] -> [[a]]
 myPack xs = myPack' xs []
@@ -75,4 +78,3 @@ myEncode' :: (Eq a) => [a] -> (Int, a) -> [(Int, a)]
 myEncode' [] curr = [curr]
 myEncode' (x:xs) (y,z) | x == z    = myEncode' xs (succ y, z)
                        | otherwise = (y,z) : myEncode' xs (1, x)
-
