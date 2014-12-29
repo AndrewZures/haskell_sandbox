@@ -59,19 +59,20 @@ myCompress' (x:xs) agg | x `elem` agg  = myCompress' xs agg
                        | otherwise     = myCompress' xs (agg ++ [x])
 
 myPack :: (Eq a) => [a] -> [[a]]
-myPack xs = myPack' xs [] []
+myPack xs = myPack' xs []
 
-myPack' :: (Eq a) => [a] -> [a] -> [[a]] -> [[a]]
-myPack' []     tmp agg = tmp : agg
-myPack' (x:xs) []  agg = myPack' xs [x] agg
-myPack' (x:xs) tmp agg | x == (head tmp)  = myPack' xs (x:tmp) agg
-                       | otherwise        = tmp : myPack' xs [x] agg
+myPack' :: (Eq a) => [a] -> [a] -> [[a]]
+myPack' [] curr    = [curr]
+myPack' (x:xs) [] = myPack' xs [x]
+myPack' (x:xs) tmp | x == (head tmp)  = myPack' xs (x:tmp)
+                   | otherwise        = tmp : myPack' xs [x]
 
--- myEncode :: (Eq a) => [a] -> [(Int, a)]
--- myEncode xs = myEncode' xs (0,'a') []
---
--- myEncode' :: (Eq a) => [a] -> (Int, a) -> [(Int, a)] -> [(Int, a)]
--- myEncode' []     tmp agg = tmp : agg
--- myEncode' (x:xs) (0, _)  agg = myEncode' xs (1, x) agg
--- myEncode' (x:xs) tmp agg | x == (snd tmp)  = myEncode' xs (succ fst tmp, snd tmp) agg
---                          | otherwise       = tmp : myEncode' xs (0, 'x') agg
+myEncode :: (Eq a) => [a] -> [(Int, a)]
+myEncode [] = []
+myEncode (x:xs) = myEncode' xs (1,x)
+
+myEncode' :: (Eq a) => [a] -> (Int, a) -> [(Int, a)]
+myEncode' [] curr = [curr]
+myEncode' (x:xs) (y,z) | x == z    = myEncode' xs (succ y, z)
+                       | otherwise = (y,z) : myEncode' xs (1, x)
+

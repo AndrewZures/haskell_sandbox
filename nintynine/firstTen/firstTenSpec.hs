@@ -54,8 +54,8 @@ main = hspec $ do
     it "#9 packs a list" $ do
       FirstTen.myPack "aaabbbcaacc" `shouldBe` ["aaa","bbb","c","aa","cc"]
 
-    -- it "#10 packs with quantity" $ do
-    --   FirstTen.myEncode "aaabbbcaacc" `shouldBe` [(3 'a'),(3 'b'),(1 'c'),(2 'a'),(2 'c')]
+    it "#10 packs with quantity" $ do
+      FirstTen.myEncode "aaabbbcaacc" `shouldBe` [(3, 'a'),(3, 'b'),(1, 'c'),(2, 'a'),(2, 'c')]
 
 
 
