@@ -38,10 +38,41 @@ main = hspec $ do
     it "#15b replicates each element in a list n times" $ do
       repli "trew" 3 `shouldBe` "tttrrreeewww"
 
-
     it "#16 drops every nth element" $ do
       (dropEvery "abcdefghik" 3) `shouldBe` "abdeghk"
 
+    it "#17a splits a list" $ do
+      splitList [1,2,3,4,5,6,7] 3 `shouldBe` [[1,2,3],[4,5,6,7]]
 
+    it "#17b splits a list" $ do
+      splitList "abcdefghik" 3 `shouldBe` ["abc","defghik"]
 
+    it "#17c splits a list" $ do
+      splitList [1,2] 3 `shouldBe` [[1,2]]
 
+    it "#17d splits a list" $ do
+      splitListTwo [1,2,3,4,5,6,7] 3 `shouldBe` ([1,2,3],[4,5,6,7])
+
+    it "#17e splits a list" $ do
+      splitListTwo "abcdefghik" 3 `shouldBe` ("abc","defghik")
+
+    it "#17f splits a list" $ do
+      splitListTwo [1,2] 3 `shouldBe` ([1,2], [])
+
+    it "#18a slices a list" $ do
+      mySlice "abcdefghijk" 3 7 `shouldBe` "cdefg"
+
+    it "#18b slices a list" $ do
+      mySlice "abcd" 3 7 `shouldBe` "cd"
+
+    it "#19a rotates a list" $ do
+      myRotate "abcdefgh" 3 `shouldBe` "defghabc"
+
+    it "#19b rotates a list" $ do
+      myRotate "abc" 9 `shouldBe` "abc"
+
+    it "#20a remove at n in list" $ do
+      myRemoveAt "abcd" 2 `shouldBe` ('b', "acd")
+
+    it "#20b remove at n in list" $ do
+      myRemoveAt "abcd" 1 `shouldBe` ('a', "bcd")

@@ -58,3 +58,36 @@ dropEvery' [] _ _ = []
 dropEvery' (x:xs) n i | (i `mod` n) == 0   = next
                       | otherwise          = x : next
                       where next = dropEvery' xs n (succ i)
+
+splitList :: [a] -> Int -> [[a]]
+splitList xs n = splitList' xs [] n 1
+
+
+splitList' :: [a] -> [a] -> Int -> Int -> [[a]]
+splitList' [] curr _ _ = [curr]
+splitList' (x:xs) curr n i | i >= n    = (curr ++ [x]) : xs : []
+                           | otherwise = splitList' xs (curr ++ [x]) n (succ i)
+
+-- optimal strat --
+splitListTwo :: [a] -> Int -> ([a],[a])
+splitListTwo (x:xs) n | n > 0  = (x:new, rest)
+                    where (new, rest) = splitListTwo xs (n-1)
+splitListTwo xs _ = ([], xs)
+
+mySlice :: [a] -> Int -> Int -> [a]
+mySlice [] _ _ = []
+mySlice (x:xs) b t | b <= 1 && t > 0  = x : next
+                   | t <= 0           = []
+                   | otherwise        = next
+                   where next = mySlice xs (pred b) (pred t)
+
+myRotate :: [a] -> Int -> [a]
+myRotate (x:xs) n | n <= 0    = (x:xs)
+                  | otherwise = myRotate (xs ++ [x]) (pred n)
+
+myRemoveAt :: [a] -> Int -> (a, [a])
+myRemoveAt xs n = remRotate ([], xs) n
+
+remRotate :: ([a], [a]) -> Int -> (a, [a])
+remRotate (prev, (x:rem)) n | n <= 1    = (x , prev ++ rem)
+                       | otherwise = remRotate (prev ++ [x], rem) (pred n)
