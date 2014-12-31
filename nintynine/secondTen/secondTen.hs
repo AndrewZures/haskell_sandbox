@@ -89,5 +89,6 @@ myRemoveAt :: [a] -> Int -> (a, [a])
 myRemoveAt xs n = remRotate ([], xs) n
 
 remRotate :: ([a], [a]) -> Int -> (a, [a])
+-- does not currently handle index greater than list size
 remRotate (prev, (x:rem)) n | n <= 1    = (x , prev ++ rem)
                        | otherwise = remRotate (prev ++ [x], rem) (pred n)

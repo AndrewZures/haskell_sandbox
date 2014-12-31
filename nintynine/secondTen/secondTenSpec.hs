@@ -76,3 +76,6 @@ main = hspec $ do
 
     it "#20b remove at n in list" $ do
       myRemoveAt "abcd" 1 `shouldBe` ('a', "bcd")
+
+    -- it "#20c remove at n in list" $ do
+    --   myRemoveAt "abcd" 5 `shouldBe` ('a', "bcd")
