@@ -1,5 +1,6 @@
 import Test.Hspec
 import ThirdTen
+import System.Random
 
 main :: IO ()
 main = hspec $ do
@@ -12,13 +13,36 @@ main = hspec $ do
     it "#21b inserts at n" $ do
       insertAt 'X' "abcd" 2 `shouldBe` "aXbcd"
 
-    it "#22a creates a range" $ do
+    it "#22a creates a range (int)" $ do
       myRange 4 9 `shouldBe` [4,5,6,7,8,9]
 
-    it "#22b creates a range" $ do
+    it "#22b creates a range (char)" $ do
       myRange 'a' 'e' `shouldBe` "abcde"
 
     it "#23a takes random n items from list" $ do
+      let gen = mkStdGen 42
+      randomSelect 1 6 gen 5 `shouldBe` [6,4,2,5,3]
+
+    it "finds an element in a list (char)" $ do
+      find' 'e' "abcdef" `shouldBe` ('e', "abcdf")
+
+    it "finds an element in a list (int)" $ do
+      find' 4 [5,6,7,8,9,3,4,5] `shouldBe` (4, [5,6,7,8,9,3,5])
+
+    it "takes at an index" $ do
+      takeAt' 1 [1,2,3] `shouldBe` (2, [1,3])
+
+    it "#23a takes random n items from list" $ do
+      let gen = mkStdGen 42
+      randomSelect' 2 [1,2,3,4,5,6] gen `shouldBe` ([6,2], [1,3,4,5])
+
+
+    -- it "#23b takes random n items from list" $ do
+    --   let gen = mkStdGen 234567
+    --   ranSelect [1,3,4] gen `shouldBe` 6
+
+
+
 
 
 
