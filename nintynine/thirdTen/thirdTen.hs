@@ -39,7 +39,11 @@ takeAt' idx (x:xs) = (fst next, x : (snd next))
 randomSelect' :: (RandomGen b) => Int -> [a] -> b -> ([a],[a])
 randomSelect' z xs gen | z <= 0    = ([], xs)
                        | otherwise = (fst taken : fst next, snd next)
-              where rIdx = ranIndex (length xs) gen
-                    taken = takeAt' rIdx xs
+              where taken = takeRandomAt' xs gen
                     next = randomSelect' (pred z) (snd taken) gen
 
+takeRandomAt' :: (RandomGen b) => [a] -> b -> (a, [a])
+takeRandomAt' xs gen = takeAt' (ranIndex (length xs) gen) xs
+
+randomFromRange :: (RandomGen a) => Int -> Int -> a -> ([Int],[Int])
+randomFromRange n m gen = randomSelect' n [1..m] gen

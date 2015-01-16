@@ -36,13 +36,7 @@ main = hspec $ do
       let gen = mkStdGen 42
       randomSelect' 2 [1,2,3,4,5,6] gen `shouldBe` ([6,2], [1,3,4,5])
 
-
-    -- it "#23b takes random n items from list" $ do
-    --   let gen = mkStdGen 234567
-    --   ranSelect [1,3,4] gen `shouldBe` 6
-
-
-
-
-
+    it "#24 takes random n items from 1..m range" $ do
+      let gen = mkStdGen 42
+      randomFromRange 2 6 gen `shouldBe` ([6,2], [1,3,4,5])
 
