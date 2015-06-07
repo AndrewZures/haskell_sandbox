@@ -17,3 +17,13 @@ main = hspec $ do
 
     it "#32 greatest common denominator" $ do
       FourthTen.myGcd 1071 462 optimized `shouldBe` 21
+
+    it "#33 coprime" $ do
+      FourthTen.myCoprime 1071 462 optimized `shouldBe` False
+
+    it "#33 coprime" $ do
+      FourthTen.myCoprime 35 64 optimized `shouldBe` True
+
+    -- it "#34 totient" $ do
+    --   FourthTen.totient 10 optimized `shouldBe` 4
+

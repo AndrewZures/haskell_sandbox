@@ -16,3 +16,8 @@ myGcd x y alg
   | y < x     = myGcd (x-y) y alg
   | otherwise = x
 
+myCoprime :: (Num a, Ord a) => a -> a -> (a -> a -> a) -> Bool
+myCoprime x y alg = myGcd x y alg == 1
+
+-- totient :: (Num a, Ord a) => a -> (a -> a -> a) -> a
+-- totient = foldl (/x y = x + 1) 
