@@ -6,8 +6,8 @@ main = hspec $ do
 
   describe "Floor" $ do
 
-    -- it "finds the floor of 58.14" do
-    --   MathStuff.floor(58.14) `shouldBe` 58
+    it "finds leq for float integer" $ do
+      MathStuff.leq 3 11.12 `shouldBe` True
 
     it "finds less than value" $ do
       MathStuff.lower (-11.4) `shouldBe` -16
@@ -29,3 +29,13 @@ main = hspec $ do
 
     it "partitions 2" $ do
       MathStuff.shrink 7 (0, 8) `shouldBe` (4, 8)
+
+    it "finds" $ do
+      MathStuff.found (1,2) `shouldBe` True
+
+    it "finds floor of a float" $ do
+      MathStuff.floor 34.25 `shouldBe` 34
+
+    it "finds floor of a negative float" $ do
+      MathStuff.floor (-12.34) `shouldBe` (-13)
+
