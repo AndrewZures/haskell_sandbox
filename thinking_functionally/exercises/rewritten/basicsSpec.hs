@@ -32,3 +32,9 @@ main = hspec $ do
 
     it "rewritten non decreasing list check" $ do
       Basics.nonDec [1,2,3,4,5] `shouldBe` True
+
+    it "rewritten position" $ do
+      Basics.position 3 [4,3,5,6] `shouldBe` 1
+
+    it "rewritten position" $ do
+      Basics.position 7 [4,3,5,6] `shouldBe` (-1)

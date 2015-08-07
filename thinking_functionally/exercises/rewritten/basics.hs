@@ -33,3 +33,12 @@ myAnd []     = True
 
 nonDec :: (Ord a) => [a] -> Bool
 nonDec xs = and $ myZipWith (<=) xs (tail xs)
+
+position :: (Eq a) => a -> [a] -> Int
+position x ys = position' x ys 0
+
+position' :: (Eq a) => a -> [a] -> Int -> Int
+position' x (y:ys) idx | x == y    = idx
+                       | ys == []  = -1
+                       | otherwise = position' x ys (succ idx)
+
