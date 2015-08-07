@@ -26,3 +26,9 @@ main = hspec $ do
 
     it "rewritten zip with zipWith" $ do
       Basics.myZipWith (,) [4,5] [1,2] `shouldBe` [(4,1),(5,2)]
+
+    it "rewritten and" $ do
+      Basics.myAnd [True, True, True] `shouldBe` True
+
+    it "rewritten non decreasing list check" $ do
+      Basics.nonDec [1,2,3,4,5] `shouldBe` True

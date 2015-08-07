@@ -26,3 +26,10 @@ myZip  _     _      = []
 myZipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 myZipWith  f (x:xs) (y:ys) = f x y : myZipWith f xs ys
 myZipWith  _ _      _      = []
+
+myAnd :: [Bool] -> Bool
+myAnd (x:xs) = x && and xs
+myAnd []     = True
+
+nonDec :: (Ord a) => [a] -> Bool
+nonDec xs = and $ myZipWith (<=) xs (tail xs)
