@@ -42,3 +42,7 @@ position' x (y:ys) idx | x == y    = idx
                        | ys == []  = -1
                        | otherwise = position' x ys (succ idx)
 
+mySpan :: (a -> Bool) -> [a] -> ([a], [a])
+mySpan f (x:xs) = if f x then (x:ys, zs)
+                  else ([], x:xs)
+                  where (ys, zs) = mySpan f xs

@@ -38,3 +38,6 @@ main = hspec $ do
 
     it "rewritten position" $ do
       Basics.position 7 [4,3,5,6] `shouldBe` (-1)
+
+    it "rewritten span" $ do
+      Basics.mySpan (\x -> x == 'a') "aaablah" `shouldBe` ("aaa","blah")
