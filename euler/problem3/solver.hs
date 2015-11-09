@@ -14,10 +14,3 @@ sieve [h|t]
 sieve' :: Int -> [Int] -> [Int]
 sieve idx arr =
             where cidx = arr !! idx
-
-
-
-
-
-
-

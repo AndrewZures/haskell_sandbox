@@ -62,11 +62,3 @@ main = hspec $ do
 
     it "#10 packs with quantity" $ do
       FirstTen.myEncode "aaabbbcaacc" `shouldBe` [(3, 'a'),(3, 'b'),(1, 'c'),(2, 'a'),(2, 'c')]
-
-
-
-
-
-
-
-
