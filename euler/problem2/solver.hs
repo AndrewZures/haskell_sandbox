@@ -12,10 +12,11 @@ dp_find_fibs x | x == 0    = [0]
                | otherwise = dp_find' 2 x [0,1]
 
 dp_find' :: Int -> Int -> [Int] -> [Int]
-dp_find' i x arr | sum > x = arr
-                 | sum == x = _arr
-                 | otherwise = dp_find' (succ i) x _arr
-                 where
-                   sum = arr !! (i-1) + arr !! (i-2)
-                   _arr = arr ++ [sum]
+dp_find' i x fibs
+    | sum > x = fibs
+    | sum == x = newFibs
+    | otherwise = dp_find' (succ i) x newFibs
+    where
+      sum = fibs !! (i-1) + fibs !! (i-2)
+      newFibs = fibs ++ [sum]
 

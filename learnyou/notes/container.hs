@@ -1,0 +1,66 @@
+-- functor defined
+-- class Functor f where
+--     fmap :: (a -> b) -> f a -> f b
+
+-- note that f is a type constructor that takes one type as a parameter
+-- just like Maybe a:  Maybe is a type constructor that takes a type as
+-- a parameter
+-- note: function that takes one type to another, a functor that takes the
+-- first type and a functor that takes the second type
+--
+-- much like normal map fmap :: (a -> b) -> [a] -> [b]
+-- note how [] is a type constructor that takes a type such as Int to make
+-- [Int]
+--
+-- could write map as:
+-- instance Functor [] where
+--    fmap = map
+--
+-- Maybe as a functor
+--
+-- instance Functor Maybe where
+--    fmap f (Just x) = Just (f x)
+--    fmap f Nothing = Nothing
+--
+--    if mapping over empty box, get an empty
+--    box back; if not an empty box, apply the function given to the value
+--    in the box
+--
+-- against Functors what a type container that takes a type, not a concrete
+-- type itself
+--  (a ->b) -> Maybe a -> Maybe b
+--
+--  Tree
+--  (a -> b) -> Tree a -> Tree b
+--
+-- instance Functor Tree where
+--    fmap f EmptyTree = EmptyTree
+--    fmap f (Node x leftsub rightsub) = Node (f x) (fmap f leftsub) (f fmap rightsub)
+--
+-- Either
+-- (a -> b) -> Either a -> Either b
+--
+-- instance Functor Either where
+--    fmap (Right x) = Right (f x)
+--    fmap (Left x) = Left x
+--
+--
+-- IO as a functor
+-- // when mapping we want function to apply to IO action but return another IO container
+-- // 'return' in haskell does nothing but merely presents its parameter
+-- // here the 'return call is only used to wrap the result in a new IO container
+-- instance Functor IO where
+--    fmap f action = do
+--      result <- action
+--      return (f result)
+--
+-- (->) r
+-- same as: -> r a
+--
+-- if function type is (a -> b) -> f a -> f b
+-- then with (-> r)
+-- (a ->  b) -> ((->) r a) -> ((->) r b)
+-- which is (a -> b) -> (r -> a) -> (r -> b)
+-- which is basically functional composition
+--
+-- so fmap can be used like (.) composition
