@@ -10,5 +10,6 @@ toArray' :: (Integral a) => a -> [a]
 toArray' 0 = []
 toArray' num = num `mod` 10 : toArray' (num `div` 10)
 
-highestPalindrome :: Int
-highestPalindrome = max . map palindromValue
+highestPalindrome range = maximum $ filter (isPalindrome . toArray) $ genOptions range
+
+genOptions range = [x*y | x <- range, y <- range]

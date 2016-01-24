@@ -14,6 +14,9 @@ main = hspec $ do
       toArray 9009 `shouldBe` [9,0,0,9]
       toArray 1234 `shouldBe` [1,2,3,4]
 
-    -- it "determines palindrome product for a number" $ do
-    --   palindromeProd 9009 `shouldBe` k
+    it "determines palindrome product for a two digit number" $ do
+      highestPalindrome [10..99] `shouldBe` 9009
+
+    it "determines palindrome product for a three digit number" $ do
+      highestPalindrome [100..999] `shouldBe` 92689
 
