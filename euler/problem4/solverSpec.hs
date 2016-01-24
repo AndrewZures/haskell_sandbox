@@ -18,5 +18,5 @@ main = hspec $ do
       highestPalindrome [10..99] `shouldBe` 9009
 
     it "determines palindrome product for a three digit number" $ do
-      highestPalindrome [100..999] `shouldBe` 92689
+      highestPalindrome [100..999] `shouldBe` 906609
 
