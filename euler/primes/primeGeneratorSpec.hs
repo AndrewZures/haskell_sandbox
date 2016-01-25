@@ -8,15 +8,19 @@ main = hspec $ do
 
   describe "Prime Generator" $ do
 
-    -- it "generates primes" $ do
-    --   genPrimes 10 `shouldBe` [2,3,5,7]
-    --
-    it "sieves the array" $ do
-      elems $ snd $ sieve (2, genBaseArray 5) `shouldBe` [1,2,3,0,5]
+    it "generates primes" $ do
+      primes 10 `shouldBe` [2,3,5,7]
 
+    it "sieves the array" $ do
+      let arr = genBaseArray 5
+      let result = elems $ snd $ sieve (2,arr)
+      result `shouldBe` [2,3,0,5]
+
+    -- it "sieves the array" $ do
+    --   primes 1000 `shouldBe` [1,2,3,0,5]
 
     it "gen base array" $ do
-      let expected = array(1,10) [(i,i) | i <- [1..10]]
+      let expected = array(2,10) [(i,i) | i <- [2..10]]
       genBaseArray 10 `shouldBe` expected
 
     it "generates list or remove" $ do

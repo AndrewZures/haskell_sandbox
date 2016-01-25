@@ -28,21 +28,21 @@ prime x kps
 --
 -- primeFactors x = primeFactors' x (primes x)
 --
--- primeFactors' 0 _ = []
--- primeFactors' x (p:ps)
---   | p^2 > x       = [x]
---   | rem x p == 0  = p:(primeFactors' (div x p) (p:ps))
---   | otherwise     = primeFactors' x ps
+primeFactors' 0 _ = []
+primeFactors' x (p:ps)
+  | p^2 > x       = [x]
+  | rem x p == 0  = p:(primeFactors' (div x p) (p:ps))
+  | otherwise     = primeFactors' x ps
 --
--- largestPrimeFactor x = largestPrimeFactor' x (primes x)
---
--- largestPrimeFactor' x [] = x
--- largestPrimeFactor' x (p:ps)
---   | div x p == 0 = x
---   | rem x p == 0 = largestPrimeFactor' (div x p) (p:ps)
---   | otherwise    = largestPrimeFactor' x ps
---
--- filter2 y z = filter (\x -> x `rem` y /= 0 && x `rem` z /= 0)
+largestPrimeFactor x = largestPrimeFactor' x (primes x)
+
+largestPrimeFactor' x [] = x
+largestPrimeFactor' x (p:ps)
+  | div x p == 0 = x
+  | rem x p == 0 = largestPrimeFactor' (div x p) (p:ps)
+  | otherwise    = largestPrimeFactor' x ps
+
+filter2 y z = filter (\x -> x `rem` y /= 0 && x `rem` z /= 0)
 
 
 newSieve x = newSieve' x 0 [0..x] (length [0..x])
