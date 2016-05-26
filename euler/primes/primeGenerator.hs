@@ -39,3 +39,5 @@ removeEvens x
   | x `mod` 5 == 0 && x /= 5 = 0
   | x `mod` 7 == 0 && x /= 7 = 0
   | otherwise = x
+
+sumPrimes = sum . primes

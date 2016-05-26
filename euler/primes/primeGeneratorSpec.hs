@@ -28,4 +28,4 @@ main = hspec $ do
         genRemList 3 12 `shouldBe` [(6,0),(9,0),(12,0)]
 
     -- it "sieves the array" $ do
-    --   sieve 2 (genBaseArray 10) 10 `shouldBe` expected
+    --   sumPrimes 2000000 `shouldBe` 1
